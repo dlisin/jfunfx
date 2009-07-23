@@ -168,6 +168,14 @@ public class FlexComponentExplorerBaseTest extends TestCase {
         tree.selectItem("Visual Components>Date Controls>DateField");
         factory.sleepFirefox(4000);
 
-        
+        DateField dateField = factory.createDateField("dateField1");
+        assertNull(dateField.getDateString());
+        dateField.setDate("Tue Jul 14 00:00:00 GMT+0400 2009");
+        assertEquals(dateField.getDateString(), "Tue Jul 14 00:00:00 GMT+0400 2009");//Wed Apr 12 15:30:17 GMT-0700 2006
+        Label selectionLabel = factory.createLabel("selection");
+        assertEquals(selectionLabel.getText(), "Date selected: 2009/7/14");
+        dateField.setDate("Sat Jul 11 00:00:00 GMT+0400 2009");
+        assertEquals(dateField.getDateString(), "Sat Jul 11 00:00:00 GMT+0400 2009");//Wed Apr 12 15:30:17 GMT-0700 2006
+        assertEquals(selectionLabel.getText(), "Date selected: 2009/7/11");
     }
 }

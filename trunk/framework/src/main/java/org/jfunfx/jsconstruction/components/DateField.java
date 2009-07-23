@@ -1,6 +1,7 @@
 package org.jfunfx.jsconstruction.components;
 
 import org.jfunfx.jsconstruction.FlexComponent;
+import org.jfunfx.jsconstruction.FunFXException;
 import org.jfunfx.jsconstruction.JFunFXContainer;
 import org.jfunfx.jsconstruction.ObjectLocator;
 
@@ -19,7 +20,17 @@ public class DateField extends FlexComponent {
         super(jFunFXContainer, objectLocator, delay);
     }
 
-    public String getDate() {
+    public String getDateString() {
         return getPropertyValue("selectedDate");
+    }
+
+    public void setDate(String date) throws FunFXException {
+        fireEvent("Open", "1");
+        fireEvent("Change", date);
+        //check date format valid
+        String dateSet = getDateString();
+        if (dateSet.contains("Invalid Date")) {
+            throw new FunFXException("Invalid date format");
+        }
     }
 }
