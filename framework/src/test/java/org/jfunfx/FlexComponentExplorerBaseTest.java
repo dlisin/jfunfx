@@ -1,6 +1,7 @@
 package org.jfunfx;
 
 import junit.framework.TestCase;
+import org.jfunfx.jsconstruction.FunFXException;
 import org.jfunfx.jsconstruction.ObjectLocator;
 import org.jfunfx.jsconstruction.components.*;
 
@@ -175,7 +176,14 @@ public class FlexComponentExplorerBaseTest extends TestCase {
         Label selectionLabel = factory.createLabel("selection");
         assertEquals(selectionLabel.getText(), "Date selected: 2009/7/14");
         dateField.setDate("Sat Jul 11 00:00:00 GMT+0400 2009");
-        assertEquals(dateField.getDateString(), "Sat Jul 11 00:00:00 GMT+0400 2009");//Wed Apr 12 15:30:17 GMT-0700 2006
+        assertEquals(dateField.getDateString(), "Sat Jul 11 00:00:00 GMT+0400 2009");
         assertEquals(selectionLabel.getText(), "Date selected: 2009/7/11");
+        //wrong format test
+        try {
+            dateField.setDate("agsfdgj");
+            fail();
+        } catch (FunFXException e) {
+            assertTrue(e.getMessage().contains("Invalid date format"));
+        }
     }
 }
