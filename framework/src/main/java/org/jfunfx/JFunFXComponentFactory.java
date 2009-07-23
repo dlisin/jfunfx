@@ -120,6 +120,16 @@ public class JFunFXComponentFactory {
         return (List) checkExistence(new List(jFunFXContainer, objectLocator, delay));
     }
 
+    public DateField createDateField(String id)
+        throws FlexComponentNotFoundException {
+        return createDateField(new ObjectLocator(id));
+    }
+
+    public DateField createDateField(ObjectLocator objectLocator)
+        throws FlexComponentNotFoundException {
+        return (DateField) checkExistence(new DateField(jFunFXContainer, objectLocator, delay));
+    }
+
     public WaitComponent createWaitComponent(String id, String property)
         throws FlexComponentNotFoundException {
         return createWaitComponent(new ObjectLocator(id), property);
