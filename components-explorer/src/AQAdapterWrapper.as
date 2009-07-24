@@ -14,8 +14,8 @@ public class AQAdapterWrapper extends AQAdapter {
     }
 
     override public function replay(target:IAutomationObject, method:String, args:Array):Object {
-        trace("Method:'" + method + "' Args:'", args, "'", "Automation name:'"+target.automationName+"'", 
-              "Automation value:'" + target.automationValue + "'", target);
+        trace("Method:'" + method + "' Args:'", args, "'", "Automation name:'" + target.automationName + "'",
+                "Automation value:'" + target.automationValue + "'", target);
         return adapter.replay(target, method, args);
     }
 
@@ -28,8 +28,8 @@ public class AQAdapterWrapper extends AQAdapter {
     }
 
     /*override public function setCustomTestingEnvironment(te:String):void {
-        adapter.setCustomTestingEnvironment(te);
-    }*/
+     adapter.setCustomTestingEnvironment(te);
+     }*/
 
     override public function setTestingEnvironment(te:XML):void {
         adapter.setTestingEnvironment(te);

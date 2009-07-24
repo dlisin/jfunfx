@@ -1,10 +1,7 @@
 package {
 import flash.display.DisplayObject;
-
 import flash.events.Event;
-
 import flash.events.IEventDispatcher;
-
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 
@@ -25,23 +22,23 @@ public class AutomationManagerWrapper implements IAutomationManager, IAutomation
         this.automationManagerObjectHelper = automationManager as IAutomationObjectHelper;
     }
 
-    public function replayKeyDownKeyUp(to:flash.events.IEventDispatcher, keyCode:uint, ctrlKey:Boolean = false, shiftKey:Boolean = false, altKey:Boolean = false):Boolean {
+    public function replayKeyDownKeyUp(to:IEventDispatcher, keyCode:uint, ctrlKey:Boolean = false, shiftKey:Boolean = false, altKey:Boolean = false):Boolean {
         return automationManagerObjectHelper.replayKeyDownKeyUp(to, keyCode, ctrlKey, shiftKey, altKey);
     }
 
-    public function replayClick(to:flash.events.IEventDispatcher, sourceEvent:flash.events.MouseEvent = null):Boolean {
+    public function replayClick(to:IEventDispatcher, sourceEvent:MouseEvent = null):Boolean {
         return automationManagerObjectHelper.replayClick(to, sourceEvent);
     }
 
-    public function isAutomationComposite(obj:mx.automation.IAutomationObject):Boolean {
+    public function isAutomationComposite(obj:IAutomationObject):Boolean {
         return automationManagerObjectHelper.isAutomationComposite(obj);
     }
 
-    public function helpCreateIDPart(parent:mx.automation.IAutomationObject, child:mx.automation.IAutomationObject, automationNameCallback:Function = null, automationIndexCallback:Function = null):mx.automation.AutomationIDPart {
+    public function helpCreateIDPart(parent:IAutomationObject, child:IAutomationObject, automationNameCallback:Function = null, automationIndexCallback:Function = null):AutomationIDPart {
         return automationManagerObjectHelper.helpCreateIDPart(parent, child, automationNameCallback, automationIndexCallback);
     }
 
-    public function replayKeyboardEvent(to:flash.events.IEventDispatcher, event:flash.events.KeyboardEvent):Boolean {
+    public function replayKeyboardEvent(to:IEventDispatcher, event:KeyboardEvent):Boolean {
         return automationManagerObjectHelper.replayKeyboardEvent(to, event);
     }
 
@@ -49,15 +46,15 @@ public class AutomationManagerWrapper implements IAutomationManager, IAutomation
         return automationManagerObjectHelper.replayClickOffStage();
     }
 
-    public function helpResolveIDPart(parent:mx.automation.IAutomationObject, part:Object):Array {
+    public function helpResolveIDPart(parent:IAutomationObject, part:Object):Array {
         return automationManagerObjectHelper.helpResolveIDPart(parent, part);
     }
 
-    public function getAutomationComposite(obj:mx.automation.IAutomationObject):mx.automation.IAutomationObject {
+    public function getAutomationComposite(obj:IAutomationObject):IAutomationObject {
         return automationManagerObjectHelper.getAutomationComposite(obj);
     }
 
-    public function replayMouseEvent(target:flash.events.IEventDispatcher, event:flash.events.MouseEvent):Boolean {
+    public function replayMouseEvent(target:IEventDispatcher, event:MouseEvent):Boolean {
         return automationManagerObjectHelper.replayMouseEvent(target, event);
     }
 
@@ -65,7 +62,7 @@ public class AutomationManagerWrapper implements IAutomationManager, IAutomation
         automationManagerObjectHelper.addSynchronization(isComplete, target);
     }
 
-    public function dispatchEvent(event:flash.events.Event):Boolean {
+    public function dispatchEvent(event:Event):Boolean {
         return automationManager.dispatchEvent(event);
     }
 
@@ -89,15 +86,15 @@ public class AutomationManagerWrapper implements IAutomationManager, IAutomation
         return automationManager.recording;
     }
 
-    public function resolveIDToSingleObject(rid:mx.automation.AutomationID, currentParent:mx.automation.IAutomationObject = null):mx.automation.IAutomationObject {
+    public function resolveIDToSingleObject(rid:AutomationID, currentParent:IAutomationObject = null):IAutomationObject {
         return automationManager.resolveIDToSingleObject(rid, currentParent);
     }
 
-    public function resolveIDPartToSingleObject(parent:mx.automation.IAutomationObject, part:mx.automation.AutomationIDPart):mx.automation.IAutomationObject {
+    public function resolveIDPartToSingleObject(parent:IAutomationObject, part:AutomationIDPart):IAutomationObject {
         return automationManager.resolveIDPartToSingleObject(parent, part);
     }
 
-    public function resolveID(rid:mx.automation.AutomationID, currentParent:mx.automation.IAutomationObject = null):Array {
+    public function resolveID(rid:AutomationID, currentParent:IAutomationObject = null):Array {
         return automationManager.resolveID(rid, currentParent);
     }
 
@@ -109,19 +106,19 @@ public class AutomationManagerWrapper implements IAutomationManager, IAutomation
         return automationManager.decrementCacheCounter(clearNow);
     }
 
-    public function showInHierarchy(obj:mx.automation.IAutomationObject):Boolean {
+    public function showInHierarchy(obj:IAutomationObject):Boolean {
         return automationManager.showInHierarchy(obj);
     }
 
-    public function getAutomationClassName(obj:mx.automation.IAutomationObject):String {
+    public function getAutomationClassName(obj:IAutomationObject):String {
         return automationManager.getAutomationClassName(obj);
     }
 
-    public function createID(obj:mx.automation.IAutomationObject, relativeToParent:mx.automation.IAutomationObject = null):mx.automation.AutomationID {
+    public function createID(obj:IAutomationObject, relativeToParent:IAutomationObject = null):AutomationID {
         return automationManager.createID(obj, relativeToParent);
     }
 
-    public function resolveIDPart(parent:mx.automation.IAutomationObject, part:mx.automation.AutomationIDPart):Array {
+    public function resolveIDPart(parent:IAutomationObject, part:AutomationIDPart):Array {
         return automationManager.resolveIDPart(parent, part);
     }
 
@@ -133,19 +130,19 @@ public class AutomationManagerWrapper implements IAutomationManager, IAutomation
         automationManager.endRecording();
     }
 
-    public function isSynchronized(target:mx.automation.IAutomationObject):Boolean {
+    public function isSynchronized(target:IAutomationObject):Boolean {
         return automationManager.isSynchronized(target);
     }
 
-    public function getParent(obj:mx.automation.IAutomationObject, parentToStopAt:mx.automation.IAutomationObject = null, ignoreShowInHierarchy:Boolean = false):mx.automation.IAutomationObject {
+    public function getParent(obj:IAutomationObject, parentToStopAt:IAutomationObject = null, ignoreShowInHierarchy:Boolean = false):IAutomationObject {
         return automationManager.getParent(obj, parentToStopAt, ignoreShowInHierarchy);
     }
 
-    public function getElementFromPoint(x:int, y:int):mx.automation.IAutomationObject {
+    public function getElementFromPoint(x:int, y:int):IAutomationObject {
         return automationManager.getElementFromPoint(x, y);
     }
 
-    public function isVisible(obj:flash.display.DisplayObject):Boolean {
+    public function isVisible(obj:DisplayObject):Boolean {
         return automationManager.isVisible(obj);
     }
 
@@ -153,31 +150,31 @@ public class AutomationManagerWrapper implements IAutomationManager, IAutomation
         return automationManager.incrementCacheCounter();
     }
 
-    public function createIDPart(obj:mx.automation.IAutomationObject, parent:mx.automation.IAutomationObject = null):mx.automation.AutomationIDPart {
+    public function createIDPart(obj:IAutomationObject, parent:IAutomationObject = null):AutomationIDPart {
         return automationManager.createIDPart(obj, parent);
     }
 
-    public function getChildrenFromIDPart(obj:mx.automation.IAutomationObject, part:mx.automation.AutomationIDPart = null, ignoreShowInHierarchy:Boolean = false):Array {
+    public function getChildrenFromIDPart(obj:IAutomationObject, part:AutomationIDPart = null, ignoreShowInHierarchy:Boolean = false):Array {
         return automationManager.getChildrenFromIDPart(obj, part, ignoreShowInHierarchy);
     }
 
-    public function recordAutomatableEvent(recorder:mx.automation.IAutomationObject, event:flash.events.Event, cacheable:Boolean = false):void {
+    public function recordAutomatableEvent(recorder:IAutomationObject, event:Event, cacheable:Boolean = false):void {
         automationManager.recordAutomatableEvent(recorder, event, cacheable);
     }
 
-    public function getProperties(obj:mx.automation.IAutomationObject, names:Array = null, forVerification:Boolean = true, forDescription:Boolean = true):Array {
+    public function getProperties(obj:IAutomationObject, names:Array = null, forVerification:Boolean = true, forDescription:Boolean = true):Array {
         return automationManager.getProperties(obj, names, forVerification, forDescription);
     }
 
-    public function getTabularData(obj:mx.automation.IAutomationObject):mx.automation.IAutomationTabularData {
+    public function getTabularData(obj:IAutomationObject):IAutomationTabularData {
         return automationManager.getTabularData(obj);
     }
 
-    public function getChildren(obj:mx.automation.IAutomationObject, ignoreShowInHierarchy:Boolean = false):Array {
+    public function getChildren(obj:IAutomationObject, ignoreShowInHierarchy:Boolean = false):Array {
         return automationManager.getChildren(obj, ignoreShowInHierarchy);
     }
 
-    public function replayAutomatableEvent(event:mx.automation.events.AutomationReplayEvent):Boolean {
+    public function replayAutomatableEvent(event:AutomationReplayEvent):Boolean {
         trace("Wrapper: replayAutomatableEvent " + event.toString());
         trace(event.automationObject);
         trace(event.replayableEvent);
@@ -189,7 +186,7 @@ public class AutomationManagerWrapper implements IAutomationManager, IAutomation
         automationManager.automationEnvironment = env;
     }
 
-    public function getRectangle(obj:flash.display.DisplayObject):Array {
+    public function getRectangle(obj:DisplayObject):Array {
         return automationManager.getRectangle(obj);
     }
 
@@ -197,10 +194,10 @@ public class AutomationManagerWrapper implements IAutomationManager, IAutomation
         return automationManager.automationEnvironment;
     }
 
-    public function getAutomationName(obj:mx.automation.IAutomationObject):String {
+    public function getAutomationName(obj:IAutomationObject):String {
         return automationManager.getAutomationName(obj);
     }
-    
+
     public function printStackTrace():void {
         try {
             throw new Error('StackTrace');
