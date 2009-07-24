@@ -1,7 +1,6 @@
 package
 {
 import custom.utilities.FlexObjectLocatorUtility;
-
 import custom.utilities.FlexObjectLocatorUtilityHelper;
 
 import flash.display.DisplayObject;
@@ -11,32 +10,40 @@ import funfx.flexlocator.FlexObjectLocator;
 
 import mx.automation.IAutomationManager;
 import mx.automation.IAutomationObject;
+import mx.events.FlexEvent;
 import mx.logging.ILogger;
 import mx.logging.Log;
 
+/**
+ * To make Mixin metadata tag work you should include following line to 
+ * additional compiler arguments '-includes "AdditionalProxy"'.
+ */
+[Mixin]
 public class AdditionalProxy {
         private var log:ILogger = Log.getLogger("AdditionalProxy");
         private var flexObjectlocator:FlexObjectLocator;
+        
+        private static var _root:DisplayObject;
         
         private static var additionalProxy:AdditionalProxy;
         
         /**
     	 *  @private    
     	 */
-    	/*public static function init(root:DisplayObject):void {
-        	if(!additionalProxy) {
-    	    	_root = root;
-    			root.addEventListener(FlexEvent.APPLICATION_COMPLETE, applicationCompleteHandler);
+    	public static function init(root:DisplayObject):void {
+        	if (additionalProxy == null) {
+        	    _root = root;
+    			root.addEventListener(FlexEvent.APPLICATION_COMPLETE, applicationUpdateCompleteHandler);
         	}
-         }*/
+        }
          
          /**
     	 *  @private    
     	 */
-    	/*private static function applicationCompleteHandler(event:FlexEvent):void {
-    		_root.removeEventListener(FlexEvent.APPLICATION_COMPLETE, applicationCompleteHandler);
+    	private static function applicationUpdateCompleteHandler(event:FlexEvent):void {
+    		_root.removeEventListener(FlexEvent.UPDATE_COMPLETE, applicationUpdateCompleteHandler);
     		additionalProxy = new AdditionalProxy();
-    	}*/
+    	}
         
         public function AdditionalProxy() {
             additionalProxy  = this;

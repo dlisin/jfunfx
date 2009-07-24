@@ -10,19 +10,16 @@
             import mx.logging.LogEventLevel;
             import mx.logging.Log;
             import mx.logging.targets.TraceTarget;
+            import AdditionalProxy;
             
         private function preinitialize():void {
             initLogging();
             //Automation.automationManager = new AutomationManagerWrapper(Automation.automationManager);
         }
         
-        private function applicationComplete():void {
-            //var aqAdapter:AQAdapter = new AQAdapter();
-        }
-        
         private function updateComplete():void {
             AQAdapter.aqAdapter = new AQAdapterWrapper(AQAdapter.aqAdapter);
-            new AdditionalProxy();
+            //new AdditionalProxy();
         }
         
         private function initLogging():void {
