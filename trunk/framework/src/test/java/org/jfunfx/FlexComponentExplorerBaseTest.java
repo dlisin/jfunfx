@@ -197,4 +197,14 @@ public class FlexComponentExplorerBaseTest extends TestCase {
         factory.createButton("button_id3").click();
         factory.createAlert().clickButton("Green");
     }
+
+    public void testLinkButton() {
+        Tree tree = factory.createTree("compLibTree");
+        tree.setDelay(1500);
+        tree.openAndSelectNode("Visual Components", "Button Controls", "LinkButton");
+        factory.sleepFirefox(4000);
+
+        factory.createLinkButton(ObjectLocator.createByAutomationName("LinkButton control")).click();
+        factory.createAlert().clickButton("OK");
+    }
 }
