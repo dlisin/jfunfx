@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:explorer="*" 
-    width="100%" height="100%" pageTitle="Adobe Flex 3 Component Explorer" 
-    initialize="sdk.send();" preinitialize="preinitialize()" 
-    applicationComplete="applicationComplete()" updateComplete="updateComplete()">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:explorer="*"
+                width="100%" height="100%" pageTitle="Adobe Flex 3 Component Explorer"
+                initialize="sdk.send();" preinitialize="preinitialize()"
+                updateComplete="updateComplete()">
 
     <mx:Script>
         <![CDATA[
-            import mx.automation.Automation;
-            import mx.logging.LogEventLevel;
-            import mx.logging.Log;
-            import mx.logging.targets.TraceTarget;
-            import AdditionalProxy;
-            
+        import mx.logging.Log;
+        import mx.logging.LogEventLevel;
+        import mx.logging.targets.TraceTarget;
+
         private function preinitialize():void {
             initLogging();
             //Automation.automationManager = new AutomationManagerWrapper(Automation.automationManager);
         }
-        
+
+        /**
+         * Is invoked after APPLICATION_COMPLETE.
+         */
         private function updateComplete():void {
             AQAdapter.aqAdapter = new AQAdapterWrapper(AQAdapter.aqAdapter);
             //new AdditionalProxy();
         }
-        
-        private function initLogging():void {
-           // Create a target.
-           var logTarget:TraceTarget = new TraceTarget();
-     
-           // Log only messages for the classes in the mx.rpc.* and 
-           // mx.messaging packages.
-           //logTarget.filters=["mx.rpc.*","mx.messaging.*"];
-     
-           // Log all log levels.
-           logTarget.level = LogEventLevel.ALL;
-     
-           // Add date, time, category, and log level to the output.
-           logTarget.includeDate = true;
-           logTarget.includeTime = true;
-           logTarget.includeCategory = true;
-           logTarget.includeLevel = true;
-     
-           // Begin logging.
-           Log.addTarget(logTarget);
-       }
 
-        private function treeChanged(event:Event):void
-        {
+        private function initLogging():void {
+            // Create a target.
+            var logTarget:TraceTarget = new TraceTarget();
+
+            // Log only messages for the classes in the mx.rpc.* and
+            // mx.messaging packages.
+            //logTarget.filters=["mx.rpc.*","mx.messaging.*"];
+
+            // Log all log levels.
+            logTarget.level = LogEventLevel.ALL;
+
+            // Add date, time, category, and log level to the output.
+            logTarget.includeDate = true;
+            logTarget.includeTime = true;
+            logTarget.includeCategory = true;
+            logTarget.includeLevel = true;
+
+            // Begin logging.
+            Log.addTarget(logTarget);
+        }
+
+        private function treeChanged(event:Event):void {
             var nodeApp:String = compLibTree.selectedItem.@app;
             if (nodeApp != null && nodeApp != "")
             {
@@ -57,21 +57,18 @@
             }
         }
 
-        private function sdkLoaded():void
-        {
+        private function sdkLoaded():void {
             explorerTree = XML(sdk.lastResult.node);
             charts.send();
         }
 
-        private function chartsLoaded():void
-        {
+        private function chartsLoaded():void {
             explorerTree.appendChild(charts.lastResult.node);
-            populateTree()
+            populateTree();
         }
 
         //we don't use data binding because the timing of the charts loading can be off
-        private function populateTree():void
-        {
+        private function populateTree():void {
             compLibTree.dataProvider = explorerTree;
         }
         ]]>
@@ -79,9 +76,9 @@
 
     <mx:XML id="explorerTree"/>
 
-    <mx:HTTPService id="sdk" url="explorer.xml" resultFormat="e4x" result="sdkLoaded();" fault="//do nothing" />
+    <mx:HTTPService id="sdk" url="explorer.xml" resultFormat="e4x" result="sdkLoaded();" fault="//do nothing"/>
 
-    <mx:HTTPService id="charts" url="charts_explorer.xml" resultFormat="e4x" result="chartsLoaded();" fault="populateTree()" />
+    <mx:HTTPService id="charts" url="charts_explorer.xml" resultFormat="e4x" result="chartsLoaded();" fault="populateTree()"/>
 
     <mx:HDividedBox width="100%" height="100%">
         <mx:Panel width="30%" height="100%" title="Adobe Flex 3 Component Explorer">
