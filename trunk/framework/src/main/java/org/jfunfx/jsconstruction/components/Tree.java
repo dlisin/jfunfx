@@ -33,6 +33,26 @@ public class Tree extends ListBase {
     }
 
     /**
+     * Sequently open branches and finally select last one.
+     *
+     * @param path path to the target node.
+     */
+    public void openAndSelectNode(String... path) {
+        StringBuilder currentPath = new StringBuilder();
+        for (int i = 0; i < path.length; i++) {
+            String element = path[i];
+            currentPath.append(element);
+            if (i == path.length - 1) {
+                //last element
+                selectItem(currentPath.toString());
+            } else {
+                openBranch(currentPath.toString());
+                currentPath.append(">");
+            }
+        }
+    }
+
+    /**
      * Close tree branch.
      *
      * @param name branch path. Example: <CODE>'Visual Components'</CODE>,
