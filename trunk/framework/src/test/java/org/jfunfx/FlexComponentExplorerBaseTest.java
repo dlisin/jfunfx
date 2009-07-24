@@ -182,4 +182,19 @@ public class FlexComponentExplorerBaseTest extends TestCase {
         Text text = factory.createText("text_id1");
         assertTrue(text.getText().startsWith("This is a multiline, non-editable text component."));
     }
+
+    public void testAlert() {
+        Tree tree = factory.createTree("compLibTree");
+        tree.setDelay(1500);
+        tree.openAndSelectNode("Visual Components", "General Controls", "Alert");
+        factory.sleepFirefox(4000);
+
+        factory.createButton("button_id1").click();
+        factory.createAlert().clickButton("OK");
+        factory.createButton("button_id2").click();
+        factory.createAlert("Save Changes").clickButton("No");
+        assertEquals(factory.createLabel("status").getText(), "You answered No");
+        factory.createButton("button_id3").click();
+        factory.createAlert().clickButton("Green");
+    }
 }
