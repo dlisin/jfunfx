@@ -140,6 +140,34 @@ public class JFunFXComponentFactory {
         return (Text) checkExistence(new Text(jFunFXContainer, objectLocator, delay));
     }
 
+    /**
+     * Create alert wrapper for alert window currently on the screen.
+     * <br/>No checks are made for alert existance.
+     *
+     * @return alert wrapper.
+     */
+    public Alert createAlert() {
+        return new Alert(jFunFXContainer, new ObjectLocator(""), delay);
+    }
+
+    /**
+     * Create alert wrapper for alert window with title specified.
+     * <br/>Alert existance is made by its title.
+     *
+     * @param title alert title.
+     * @return alert wrapper.
+     * @throws FlexComponentNotFoundException alert existance check by title failed.
+     */
+    public Alert createAlert(String title)
+        throws FlexComponentNotFoundException {
+        return createAlert(ObjectLocator.createByAutomationName(title));
+    }
+
+    protected Alert createAlert(ObjectLocator objectLocator)
+        throws FlexComponentNotFoundException {
+        return (Alert) checkExistence(new Alert(jFunFXContainer, objectLocator, delay));
+    }
+
     public WaitComponent createWaitComponent(String id, String property)
         throws FlexComponentNotFoundException {
         return createWaitComponent(new ObjectLocator(id), property);
