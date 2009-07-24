@@ -18,9 +18,7 @@ public class FlexComponentExplorerBaseTest extends TestCase {
     public void testButton() {
         Tree tree = factory.createTree("compLibTree");
         tree.setDelay(500);
-        tree.openBranch("Visual Components");
-        tree.openBranch("Visual Components>Button Controls");
-        tree.selectItem("Visual Components>Button Controls>Button");
+        tree.openAndSelectNode("Visual Components", "Button Controls", "Button");
         factory.sleepFirefox(4000);
 
 //        factory.createButton(new ObjectLocator("iconButton", new ObjectLocator("buttons_vbox_id")));
@@ -39,9 +37,7 @@ public class FlexComponentExplorerBaseTest extends TestCase {
     public void testCheckBox() {
         Tree tree = factory.createTree("compLibTree");
         tree.setDelay(500);
-        tree.openBranch("Visual Components");
-        tree.openBranch("Visual Components>Button Controls");
-        tree.selectItem("Visual Components>Button Controls>CheckBox");
+        tree.openAndSelectNode("Visual Components", "Button Controls", "CheckBox");
         factory.sleepFirefox(4000);
 
         TextArea textArea = factory.createTextArea("cartItems");
@@ -65,9 +61,7 @@ public class FlexComponentExplorerBaseTest extends TestCase {
     public void testRadioButton() {
         Tree tree = factory.createTree("compLibTree");
         tree.setDelay(500);
-        tree.openBranch("Visual Components");
-        tree.openBranch("Visual Components>Button Controls");
-        tree.selectItem("Visual Components>Button Controls>RadioButton");
+        tree.openAndSelectNode("Visual Components", "Button Controls", "RadioButton");
         factory.sleepFirefox(4000);
 
         RadioButton rb1 = factory.createRadioButton(ObjectLocator.createByAutomationName("1942"));
@@ -98,9 +92,7 @@ public class FlexComponentExplorerBaseTest extends TestCase {
     public void testComboBox() {
         Tree tree = factory.createTree("compLibTree");
         tree.setDelay(1500);
-        tree.openBranch("Visual Components");
-        tree.openBranch("Visual Components>General Controls");
-        tree.selectItem("Visual Components>General Controls>ComboBox");
+        tree.openAndSelectNode("Visual Components", "General Controls", "ComboBox");
         factory.sleepFirefox(5000);
 
         ComboBox comboBox =
@@ -116,9 +108,7 @@ public class FlexComponentExplorerBaseTest extends TestCase {
     public void testTree() {
         Tree tree = factory.createTree("compLibTree");
         tree.setDelay(1500);
-        tree.openBranch("Visual Components");
-        tree.openBranch("Visual Components>General Controls");
-        tree.selectItem("Visual Components>General Controls>Tree");
+        tree.openAndSelectNode("Visual Components", "General Controls", "Tree");
         factory.sleepFirefox(4000);
 
         Tree myTree = factory.createTree("myTree");
@@ -141,9 +131,7 @@ public class FlexComponentExplorerBaseTest extends TestCase {
     public void testList() {
         Tree tree = factory.createTree("compLibTree");
         tree.setDelay(1500);
-        tree.openBranch("Visual Components");
-        tree.openBranch("Visual Components>General Controls");
-        tree.selectItem("Visual Components>General Controls>List");
+        tree.openAndSelectNode("Visual Components", "General Controls", "List");
         factory.sleepFirefox(4000);
 
         List list = factory.createList("source");
@@ -164,9 +152,7 @@ public class FlexComponentExplorerBaseTest extends TestCase {
     public void testDateField() {
         Tree tree = factory.createTree("compLibTree");
         tree.setDelay(1500);
-        tree.openBranch("Visual Components");
-        tree.openBranch("Visual Components>Date Controls");
-        tree.selectItem("Visual Components>Date Controls>DateField");
+        tree.openAndSelectNode("Visual Components", "Date Controls", "DateField");
         factory.sleepFirefox(4000);
 
         DateField dateField = factory.createDateField("dateField1");
@@ -185,5 +171,15 @@ public class FlexComponentExplorerBaseTest extends TestCase {
         } catch (FunFXException e) {
             assertTrue(e.getMessage().contains("Invalid date format"));
         }
+    }
+
+    public void testText() {
+        Tree tree = factory.createTree("compLibTree");
+        tree.setDelay(1500);
+        tree.openAndSelectNode("Visual Components", "Text Controls", "Text");
+        factory.sleepFirefox(4000);
+
+        Text text = factory.createText("text_id1");
+        assertTrue(text.getText().startsWith("This is a multiline, non-editable text component."));
     }
 }
