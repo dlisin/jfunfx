@@ -99,7 +99,7 @@ public class JFunFXContainer extends FunFXConnector {
      */
     public Boolean isComponentExists(ObjectLocator locator) throws FunFXException {
         try {
-            if (getPropertyValue(locator, "id") == null) {
+            if (getPropertyValue(locator, "automationName") == null) {
                 return false;
             }
             return true;
