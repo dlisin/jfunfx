@@ -6,6 +6,7 @@ import org.jfunfx.jsconstruction.components.*;
 /**
  * Flex components wrappers factory. It is the main front class of the framework, the test writer
  * should use it primarily.
+ * <br/>Each Flex3 component supported has the same name in JFunFX.
  * <br/>Every component is checked for existence before creation. If not exist then
  * {@link org.jfunfx.jsconstruction.FlexComponentNotFoundException} is thrown.
  * <br/>date 16.07.2009
