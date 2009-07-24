@@ -168,6 +168,16 @@ public class JFunFXComponentFactory {
         return (Alert) checkExistence(new Alert(jFunFXContainer, objectLocator, delay));
     }
 
+    public LinkButton createLinkButton(String id)
+        throws FlexComponentNotFoundException {
+        return createLinkButton(new ObjectLocator(id));
+    }
+
+    public LinkButton createLinkButton(ObjectLocator objectLocator)
+        throws FlexComponentNotFoundException {
+        return (LinkButton) checkExistence(new LinkButton(jFunFXContainer, objectLocator, delay));
+    }
+
     public WaitComponent createWaitComponent(String id, String property)
         throws FlexComponentNotFoundException {
         return createWaitComponent(new ObjectLocator(id), property);
