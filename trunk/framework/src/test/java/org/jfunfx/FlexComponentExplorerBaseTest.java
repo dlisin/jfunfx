@@ -207,4 +207,15 @@ public class FlexComponentExplorerBaseTest extends TestCase {
         factory.createLinkButton(ObjectLocator.createByAutomationName("LinkButton control")).click();
         factory.createAlert().clickButton("OK");
     }
+
+    public void testHorizontalList() {
+        Tree tree = factory.createTree("compLibTree");
+        tree.setDelay(1500);
+        tree.openAndSelectNode("Visual Components", "General Controls", "HorizontalList");
+        factory.sleepFirefox(4000);
+
+        List list = factory.createList("CameraSelection");
+        list.selectItem("Nokia 6680");
+        assertEquals(list.getSelectedItem(), "Nokia 6680");
+    }
 }
