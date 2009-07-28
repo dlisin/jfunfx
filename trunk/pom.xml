@@ -2,24 +2,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>db.skunkworks-day</groupId>
-    <artifactId>jfunfx</artifactId>
+    <groupId>com.googlecode.jfunfx</groupId>
+    <artifactId>jfunfx-parent</artifactId>
     <version>0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.openqa.selenium.webdriver</groupId>
-            <artifactId>webdriver-ie</artifactId>
-            <version>0.6.964</version>
-        </dependency>
+    <modules>
+        <module>framework</module>
+    </modules>
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <repositories>
         <repository>
@@ -44,6 +47,12 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+        <repository>
+			<id>maven2-repository.dev.java.net</id> 
+			<name>Java.net Repository for Maven</name>
+			<url>http://download.java.net/maven/2/</url>
+			<layout>default</layout>
+		</repository>
     </repositories>
 </project>
 
