@@ -218,4 +218,22 @@ public class FlexComponentExplorerBaseTest extends TestCase {
         list.selectItem("Nokia 6680");
         assertEquals(list.getSelectedItem(), "Nokia 6680");
     }
+
+    public void testTabBar() {
+        Tree tree = factory.createTree("compLibTree");
+        tree.setDelay(1500);
+        tree.openAndSelectNode("Visual Components", "General Controls", "TabBar");
+        factory.sleepFirefox(4000);
+
+        TabBar tabBar = new TabBar(factory.getJFunFXContainer(), new ObjectLocator("tabbar_id1"));
+        TextArea textArea = factory.createTextArea("forClick");
+        assertEquals(tabBar.getChildrenCount(), 3);
+        assertEquals(tabBar.getSelectedIndex(), 0);
+        tabBar.selectItem("Alaska");
+        assertEquals(tabBar.getSelectedIndex(), 1);
+        assertTrue(textArea.getText().startsWith("label is: Alaska, index is: 1"));
+        tabBar.selectItem("Arkansas");
+        assertEquals(tabBar.getSelectedIndex(), 2);
+        assertTrue(textArea.getText().startsWith("label is: Arkansas, index is: 2"));
+    }
 }
