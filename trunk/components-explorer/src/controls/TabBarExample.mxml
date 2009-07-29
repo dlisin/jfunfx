@@ -30,7 +30,7 @@
         <mx:Label width="100%" color="blue" 
             text="Select a tab to change the current panel."/>
 
-        <mx:TabBar itemClick="clickEvt(event);">
+        <mx:TabBar id="tabbar_id1" itemClick="clickEvt(event);">
             <mx:dataProvider>{STATE_ARRAY}</mx:dataProvider>
         </mx:TabBar>
 
