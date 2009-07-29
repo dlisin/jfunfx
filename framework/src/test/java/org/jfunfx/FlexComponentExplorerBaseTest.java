@@ -191,8 +191,11 @@ public class FlexComponentExplorerBaseTest extends TestCase {
 
         factory.createButton("button_id1").click();
         factory.createAlert().clickButton("OK");
+        factory.sleep(500);
         factory.createButton("button_id2").click();
+        factory.sleep(500);
         factory.createAlert("Save Changes").clickButton("No");
+        factory.sleep(500);
         assertEquals(factory.createLabel("status").getText(), "You answered No");
         factory.createButton("button_id3").click();
         factory.createAlert().clickButton("Green");
