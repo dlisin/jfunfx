@@ -179,6 +179,26 @@ public class JFunFXComponentFactory {
         return (LinkButton) checkExistence(new LinkButton(jFunFXContainer, objectLocator, delay));
     }
 
+    public TabBar createTabBar(String id)
+        throws FlexComponentNotFoundException {
+        return createTabBar(new ObjectLocator(id));
+    }
+
+    public TabBar createTabBar(ObjectLocator objectLocator)
+        throws FlexComponentNotFoundException {
+        return (TabBar) checkExistence(new TabBar(jFunFXContainer, objectLocator, delay));
+    }
+
+    public Menu createMenu(String id)
+        throws FlexComponentNotFoundException {
+        return createMenu(new ObjectLocator(id));
+    }
+
+    public Menu createMenu(ObjectLocator objectLocator)
+        throws FlexComponentNotFoundException {
+        return (Menu) checkExistence(new Menu(jFunFXContainer, objectLocator, delay));
+    }
+
     public WaitComponent createWaitComponent(String id, String property)
         throws FlexComponentNotFoundException {
         return createWaitComponent(new ObjectLocator(id), property);
