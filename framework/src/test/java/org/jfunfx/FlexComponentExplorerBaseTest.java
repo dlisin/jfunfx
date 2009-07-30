@@ -228,7 +228,7 @@ public class FlexComponentExplorerBaseTest extends TestCase {
         tree.openAndSelectNode("Visual Components", "General Controls", "TabBar");
         factory.sleepFirefox(4000);
 
-        TabBar tabBar = new TabBar(factory.getJFunFXContainer(), new ObjectLocator("tabbar_id1"));
+        TabBar tabBar = factory.createTabBar("tabbar_id1");
         TextArea textArea = factory.createTextArea("forClick");
         assertEquals(tabBar.getChildrenCount(), 3);
         assertEquals(tabBar.getSelectedIndex(), 0);
@@ -238,5 +238,17 @@ public class FlexComponentExplorerBaseTest extends TestCase {
         tabBar.selectItem("Arkansas");
         assertEquals(tabBar.getSelectedIndex(), 2);
         assertTrue(textArea.getText().startsWith("label is: Arkansas, index is: 2"));
+    }
+
+    public void testMenu() {
+        Tree tree = factory.createTree("compLibTree");
+        tree.setDelay(1500);
+        tree.openAndSelectNode("Visual Components", "Menu Controls", "Menu");
+        factory.sleepFirefox(4000);
+
+        factory.createButton("mybutton").click();
+        Menu menu = factory.createMenu(ObjectLocator.createByAutomationName("menu_an1"));
+        menu.selectItem("MenuItem 2");
+        factory.createAlert("Clicked menu item").clickButton("OK");
     }
 }
