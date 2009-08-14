@@ -260,6 +260,7 @@ public class FlexComponentExplorerBaseTest extends TestCase {
         factory.createButton("mybutton").click();
         Menu menu = factory.createMenu(ObjectLocator.createByAutomationName("menu_an1"));
         menu.selectItem("MenuItem 2");
+        factory.sleep(500);
         factory.createAlert("Clicked menu item").clickButton("OK");
     }
 }

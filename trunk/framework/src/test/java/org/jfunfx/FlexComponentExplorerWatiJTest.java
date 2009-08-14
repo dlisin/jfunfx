@@ -16,6 +16,7 @@ public class FlexComponentExplorerWatiJTest extends FlexComponentExplorerBaseTes
     protected void setUp() throws Exception {
         ie = new IE();
         ie.start("http://localhost:8085/components-explorer/explorer.html");
+        TestUtils.checkPageLoaded(ie.text());
         JSExecutor jsExecutor = new WatijJSExecutor(ie);
         factory = new JFunFXComponentFactory(new JFunFXContainer(jsExecutor, "explorer"));
     }
