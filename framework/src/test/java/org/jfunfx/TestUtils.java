@@ -30,4 +30,14 @@ public class TestUtils {
     public static String removeLineSeparators(String string) {
         return string == null ? "" : string.replaceAll("[\r\n]+", "");
     }
+
+    public static void checkPageLoaded(String pageSource) {
+        if (pageSource == null || pageSource.trim().length() == 0 ||
+            /*IE (tested on IE7.0 Win XP) with Watij*/
+            (pageSource.length() < 2000 && pageSource.contains("cannot display the webpage")) ||
+            /*FF (tested on FF3.0) with WebDriver*/
+            (pageSource.contains("<div id=\"errorLongDesc\">"))) {
+            throw new IllegalStateException("Requested page is not available.");
+        }
+    }
 }

@@ -3,7 +3,7 @@ package org.jfunfx;
 import org.jfunfx.jsconstruction.JFunFXContainer;
 import org.jfunfx.jsconstruction.ObjectLocator;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
  * date 17.07.2009
@@ -16,12 +16,13 @@ public class FlexComponentExplorerWebDriverTest extends FlexComponentExplorerBas
 
     @Override
     protected void setUp() throws Exception {
-        driver = new InternetExplorerDriver();
-//        driver = new FirefoxDriver();
+//        driver = new InternetExplorerDriver();
+        driver = new FirefoxDriver();
         driver.get("http://localhost:8085/components-explorer/explorer.html");
-//        Thread.sleep(7000);//for firefox only
+        TestUtils.checkPageLoaded(driver.getPageSource());
         WebDriverJSExecutor jsExecutor = new WebDriverJSExecutor(driver);
         factory = new JFunFXComponentFactory(new JFunFXContainer(jsExecutor, "explorer"));
+        factory.sleepFirefox(7000);
     }
 
     @Override
